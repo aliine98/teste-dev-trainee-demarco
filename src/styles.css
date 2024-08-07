@@ -18,3 +18,9 @@ body {
     color: #ff0000;
     border: #ff0000 1px solid;
 }
+
+.message {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    color: #ff0000;
+}

@@ -3,7 +3,7 @@ export function isValidName(name) {
 }
 
 export function isValidEmail(email) {
-    return email.length > 10 && email.includes('@') && (email.includes('.com') || email.includes('.com.br'));
+    return email.length > 10 && email.includes('@') && email.includes('.com');
 }
 
 export function isValidDate(date) {
