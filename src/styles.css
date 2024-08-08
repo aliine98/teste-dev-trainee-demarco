@@ -9,6 +9,36 @@ body {
     padding: 0;
 }
 
+.main-title {
+    text-align: center;
+}
+
+#formcadastro,
+#edit-form {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    margin: auto;
+    text-align: start;
+}
+
+#formcadastro {
+    margin-top: 2rem;
+    padding: 2rem;
+    border: 1px solid #000;
+}
+
+#formcadastro input,
+#edit-form input {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 1.6rem;
+    font-size: 1.6rem;
+}
+
 .valid {
     color: #008000;
     border: #008000 1px solid;
@@ -21,6 +51,83 @@ body {
 
 .message {
     font-size: 1.2rem;
-    margin-top: 1rem;
     color: #ff0000;
+    margin-top: 0;
+}
+
+#formcadastro button,
+#btn-update {
+    padding: 10px;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #ee194a;
+    color: #fdfdfd;
+    cursor: pointer;
+    font-size: 1.7rem;
+    transition: all 0.5s;
+}
+
+#formcadastro button[type="reset"],
+.btn-delete {
+    background-color: transparent;
+    color: #000;
+}
+
+#formcadastro button[type="reset"]:hover,
+.btn-delete:hover {
+    background-color: #920000;
+    color: #fdfdfd;
+}
+
+#btnsubmit,
+.btn-edit,
+#btn-update {
+    background-color: #ee194a;
+    color: #fdfdfd;
+}
+
+#btnsubmit:hover,
+.btn-edit:hover,
+#btn-update:hover {
+    background-color: #920000;
+}
+
+dialog {
+    width: 90%;
+    max-width: 600px;
+    margin: auto;
+    padding: 2rem;
+    border: 1px solid #000;
+    border-radius: 10px;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.clients-title {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+#clients {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    gap: 2rem;
+}
+
+.client {
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.btn-delete,
+.btn-edit {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: all 0.5s;
 }

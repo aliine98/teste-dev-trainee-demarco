@@ -84,7 +84,7 @@ function openEditForm(client) {
     <input type="email" id="emailEdit" value="${client.email}" required>
     <label for="dataEdit">Data:</label>
     <input type="date" id="dataEdit" value="${client.date}" required>
-    <button type="submit" id="btnedit">Atualizar</button>
+    <button type="submit" id="btn-update">Atualizar</button>
     </form>
     `;
     document.body.appendChild(dialog);
@@ -105,7 +105,7 @@ function openEditForm(client) {
 }
 
 const clientsList = getClients();
-const clientsUl = document.getElementById('clientes');
+const clientsUl = document.getElementById('clients');
 clientsUl.innerHTML = '';
 
 clientsList.forEach(client => {
@@ -119,7 +119,10 @@ clientsList.forEach(client => {
             <button class="btn-edit">Editar</button>
             <button class="btn-delete">Deletar</button>
             `;
-    li.querySelector('.btn-edit').addEventListener('click', () => openEditForm(client));
-    li.querySelector('.btn-delete').addEventListener('click', () => deleteClient(client.id));
     clientsUl.appendChild(li);
+    li.querySelector('.btn-edit').addEventListener('click', () => openEditForm(client));
+    li.querySelector('.btn-delete').addEventListener('click', () => {
+        deleteClient(client.id);
+        window.location.reload();
+    });
 });
