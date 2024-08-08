@@ -96,9 +96,9 @@ function openEditForm(client) {
         const nameInput = form.querySelector('#nomeEdit');
         const emailInput = form.querySelector('#emailEdit');
         const dateInput = form.querySelector('#dataEdit');
-        validationStyle(nameInput, isValidName(nameInput), nameInputMessage);
-        validationStyle(emailInput, isValidEmail(emailInput), emailInputMessage);
-        validationStyle(dateInput, isValidDate(dateInput), dateInputMessage);
+        validationStyle(nameInput, isValidName(nameInput.value), nameInputMessage);
+        validationStyle(emailInput, isValidEmail(emailInput.value), emailInputMessage);
+        validationStyle(dateInput, isValidDate(dateInput.value), dateInputMessage);
         editClient(client.id, { name: nameInput.value, email: emailInput.value, date: dateInput.value });
         dialog.close();
     });
