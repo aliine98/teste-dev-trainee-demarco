@@ -131,3 +131,9 @@ dialog {
     cursor: pointer;
     transition: all 0.5s;
 }
+
+footer {
+    margin-top: 3rem;
+    font-size: 1.4rem;
+    text-align: center;
+}
