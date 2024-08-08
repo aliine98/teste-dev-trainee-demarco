@@ -1,4 +1,4 @@
-import { addClient, getClients } from './clients.js';
+import { addClient, getClients, deleteClient, editClient } from './clients.js';
 import { isValidName, isValidDate, isValidEmail } from './form-validation.js';
 
 const dialog = document.createElement('dialog');
@@ -45,7 +45,6 @@ emailInput.addEventListener('input', () => {
 });
 
 btnSubmit.addEventListener('click', event => {
-    event.preventDefault();
     const isValidDateInput = isValidDate(dateInput.value);
     const isValidEmailInput = isValidEmail(emailInput.value);
     const isValidNameInput = isValidName(nameInput.value);
@@ -62,6 +61,7 @@ btnSubmit.addEventListener('click', event => {
     }
 
     if (!isValidNameInput || !isValidEmailInput || !isValidDateInput) {
+        event.preventDefault();
         dialog.innerHTML = '<p>Formulário inválido! Verifique os campos</p>';
         document.body.appendChild(dialog);
         dialog.showModal();
@@ -69,5 +69,57 @@ btnSubmit.addEventListener('click', event => {
         dialog.innerHTML = '<p>Formulário enviado com sucesso!</p>';
         document.body.appendChild(dialog);
         dialog.showModal();
+        addClient(nameInput.value, emailInput.value, dateInput.value);
     }
+});
+
+function openEditForm(client) {
+    const dialog = document.createElement('dialog');
+    dialog.classList.add('edit-dialog');
+    dialog.innerHTML = `
+    <form id="edit-form">
+    <label for="nomeEdit">Nome:</label>
+    <input type="text" id="nomeEdit" value="${client.name}" required>
+    <label for="emailEdit">Email:</label>
+    <input type="email" id="emailEdit" value="${client.email}" required>
+    <label for="dataEdit">Data:</label>
+    <input type="date" id="dataEdit" value="${client.date}" required>
+    <button type="submit" id="btnedit">Atualizar</button>
+    </form>
+    `;
+    document.body.appendChild(dialog);
+    console.log(dialog);
+    dialog.showModal();
+
+    const form = dialog.querySelector('#edit-form');
+    form.addEventListener('submit', () => {
+        const nameInput = form.querySelector('#nomeEdit');
+        const emailInput = form.querySelector('#emailEdit');
+        const dateInput = form.querySelector('#dataEdit');
+        validationStyle(nameInput, isValidName(nameInput), nameInputMessage);
+        validationStyle(emailInput, isValidEmail(emailInput), emailInputMessage);
+        validationStyle(dateInput, isValidDate(dateInput), dateInputMessage);
+        editClient(client.id, { name: nameInput.value, email: emailInput.value, date: dateInput.value });
+        dialog.close();
+    });
+}
+
+const clientsList = getClients();
+const clientsUl = document.getElementById('clientes');
+clientsUl.innerHTML = '';
+
+clientsList.forEach(client => {
+    console.log(client);
+    const li = document.createElement('li');
+    li.classList.add('client');
+    li.innerHTML = `
+            <p>Nome: ${client.name}</p>
+            <p>Email: ${client.email}</p>
+            <p>Cliente desde: ${client.date}</p>
+            <button class="btn-edit">Editar</button>
+            <button class="btn-delete">Deletar</button>
+            `;
+    li.querySelector('.btn-edit').addEventListener('click', () => openEditForm(client));
+    li.querySelector('.btn-delete').addEventListener('click', () => deleteClient(client.id));
+    clientsUl.appendChild(li);
 });
